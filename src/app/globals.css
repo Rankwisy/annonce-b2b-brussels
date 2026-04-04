@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Google Fonts loaded via layout.tsx */
+
+@layer base {
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: #f8f9ff;
+    color: #0d1c2e;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+  .btn-primary {
+    @apply bg-primary text-white font-headline font-bold px-6 py-3 rounded-lg
+           hover:bg-primary-container transition-all duration-200 shadow-card
+           hover:shadow-card-hover hover:scale-[1.01] active:scale-95;
+  }
+  .btn-secondary {
+    @apply border border-primary/30 text-primary font-headline font-semibold px-6 py-3 rounded-lg
+           hover:bg-primary/5 transition-all duration-200;
+  }
+  .card {
+    @apply bg-surface-container-lowest rounded-xl shadow-card hover:shadow-card-hover
+           transition-all duration-300;
+  }
+  .section-title {
+    @apply font-headline font-extrabold text-on-surface;
+  }
+  .input-field {
+    @apply w-full bg-surface-container-high rounded-lg px-4 py-3
+           border-b-2 border-transparent focus:border-primary
+           focus:bg-white focus:ring-0 outline-none transition-all
+           text-on-surface placeholder:text-secondary/50;
+  }
+  .badge-verified {
+    @apply inline-flex items-center gap-1 text-xs font-bold text-primary
+           bg-primary/10 px-2 py-0.5 rounded-full;
+  }
+  .badge-premium {
+    @apply inline-flex items-center gap-1 text-xs font-bold text-amber-700
+           bg-amber-50 border border-amber-200 px-2 py-0.5 rounded-full;
+  }
+}
+
+@layer utilities {
+  .text-gradient-primary {
+    background: linear-gradient(135deg, #a04100, #ff6b00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
