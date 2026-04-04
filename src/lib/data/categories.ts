@@ -121,6 +121,16 @@ export const categories: Category[] = [
     metaDescription: 'Entreprises de sécurité, gardiennage et surveillance à Bruxelles. Certifiées et agréées.',
     count: 76,
   },
+  {
+    slug: 'transport-prive',
+    name: 'Transport Privé',
+    nameEn: 'Private Transport',
+    icon: '🚘',
+    description: 'Chauffeurs privés, limousines, transferts aéroport et services VTC haut de gamme à Bruxelles.',
+    metaTitle: 'Transport Privé & Chauffeur à Bruxelles | Annonce.brussels',
+    metaDescription: 'Services de transport privé, limousine et VTC à Bruxelles. Chauffeurs professionnels pour transferts, événements et déplacements d\'affaires.',
+    count: 34,
+  },
 ]
 
 export function getCategoryBySlug(slug: string): Category | undefined {
