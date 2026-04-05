@@ -12,9 +12,11 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-4 md:px-8 h-full flex items-center justify-between">
         {/* Brand */}
         <Link href="/" className="flex items-center gap-2 group">
-          <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-            <span className="text-white font-headline font-black text-sm">A</span>
-          </div>
+          <img
+            src="https://ik.imagekit.io/9nqnnkvba/android-chrome-192x192.png"
+            alt="Annonce.brussels logo"
+            className="w-8 h-8 rounded-lg"
+          />
           <span className="text-lg font-headline font-extrabold text-primary tracking-tight">
             Annonce<span className="text-secondary">.brussels</span>
           </span>
