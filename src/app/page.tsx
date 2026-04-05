@@ -20,9 +20,9 @@ export default function HomePage() {
       {/* ── HERO ─────────────────────────────────────────────────────── */}
       <section className="relative min-h-[92vh] flex items-center overflow-hidden bg-inverse-surface">
         {/* Background overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-inverse-surface via-inverse-surface/95 to-primary/20 z-10" />
-        {/* Background image hint */}
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1559113202-c916b8e44373?w=1800&q=80')] bg-cover bg-center opacity-25" />
+        <div className="absolute inset-0 bg-gradient-to-br from-inverse-surface/80 via-inverse-surface/60 to-primary/20 z-10" />
+        {/* Background image */}
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1559113202-c916b8e44373?w=1800&q=80')] bg-cover bg-center opacity-50" />
 
         <div className="relative z-20 max-w-7xl mx-auto px-4 md:px-8 pt-20 pb-24 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left: copy */}
