@@ -3,8 +3,14 @@ import { createClient } from '@/lib/supabase/server'
 import { HeaderAuthButtons } from './HeaderAuthButtons'
 
 export async function Header() {
-  const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
+  let user = null
+  try {
+    const supabase = await createClient()
+    const { data } = await supabase.auth.getUser()
+    user = data.user
+  } catch {
+    // Supabase unavailable — render header without auth state
+  }
 
   const navLinks = [
     { href: '/categorie', label: 'Catégories' },
