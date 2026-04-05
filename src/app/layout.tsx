@@ -28,6 +28,7 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true },
   alternates: { canonical: 'https://annonce.brussels' },
+  verification: { google: '91aHRH6ZDU2tR_Z_vAvIO4WhwgxVxS873HrsaHdU1ig' },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
