@@ -29,6 +29,19 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
   alternates: { canonical: 'https://annonce.brussels' },
   verification: { google: '91aHRH6ZDU2tR_Z_vAvIO4WhwgxVxS873HrsaHdU1ig' },
+  icons: {
+    icon: [
+      { url: 'https://ik.imagekit.io/9nqnnkvba/favicon.ico',        type: 'image/x-icon' },
+      { url: 'https://ik.imagekit.io/9nqnnkvba/favicon-16x16.png',  sizes: '16x16',  type: 'image/png' },
+      { url: 'https://ik.imagekit.io/9nqnnkvba/favicon-32x32.png',  sizes: '32x32',  type: 'image/png' },
+    ],
+    apple: { url: 'https://ik.imagekit.io/9nqnnkvba/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    other: [
+      { rel: 'icon', url: 'https://ik.imagekit.io/9nqnnkvba/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
+      { rel: 'icon', url: 'https://ik.imagekit.io/9nqnnkvba/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' },
+    ],
+  },
+  manifest: 'https://ik.imagekit.io/9nqnnkvba/site.webmanifest',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -40,7 +53,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
         />
-        <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body>
         <Header />
