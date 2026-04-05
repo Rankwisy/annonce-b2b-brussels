@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { Business } from '@/types'
 
 interface BusinessCardProps {
@@ -17,20 +18,42 @@ function StarRating({ rating }: { rating: number }) {
   )
 }
 
+function Thumbnail({ src, name, size = 'md' }: { src?: string; name: string; size?: 'sm' | 'md' | 'lg' }) {
+  const dims = size === 'lg' ? 'w-20 h-20' : size === 'sm' ? 'w-10 h-10' : 'w-14 h-14'
+  const textSize = size === 'lg' ? 'text-3xl' : size === 'sm' ? 'text-base' : 'text-xl'
+
+  if (src) {
+    return (
+      <div className={`${dims} rounded-xl overflow-hidden flex-shrink-0 border border-outline-variant/10`}>
+        <Image
+          src={src}
+          alt={name}
+          width={size === 'lg' ? 80 : size === 'sm' ? 40 : 56}
+          height={size === 'lg' ? 80 : size === 'sm' ? 40 : 56}
+          className="w-full h-full object-cover"
+          unoptimized
+        />
+      </div>
+    )
+  }
+  return (
+    <div className={`${dims} rounded-xl bg-surface-container-low flex items-center justify-center flex-shrink-0 border border-outline-variant/10`}>
+      <span className={`font-headline font-black ${textSize} text-primary`}>{name.charAt(0)}</span>
+    </div>
+  )
+}
+
 export function BusinessCard({ business, variant = 'default' }: BusinessCardProps) {
   if (variant === 'compact') {
     return (
       <Link href={`/entreprise/${business.slug}`} className="group block">
         <div className="card p-4 group-hover:border-primary/10 border border-transparent transition-all">
-          <div className="flex items-start justify-between gap-3">
+          <div className="flex items-start gap-3">
+            <Thumbnail src={business.heroImage} name={business.name} size="sm" />
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2 mb-1">
-                {business.premium && (
-                  <span className="badge-premium">PREMIUM</span>
-                )}
-                {business.verified && (
-                  <span className="badge-verified">✓ Vérifié</span>
-                )}
+                {business.premium && <span className="badge-premium">PREMIUM</span>}
+                {business.verified && <span className="badge-verified">✓ Vérifié</span>}
               </div>
               <h3 className="font-headline font-bold text-on-surface group-hover:text-primary transition-colors truncate">{business.name}</h3>
               <p className="text-xs text-secondary mt-0.5 truncate">{business.tagline}</p>
@@ -55,30 +78,55 @@ export function BusinessCard({ business, variant = 'default' }: BusinessCardProp
   return (
     <Link href={`/entreprise/${business.slug}`} className="group block">
       <article className="card border border-transparent group-hover:border-primary/10 transition-all overflow-hidden">
-        {/* Top accent for premium */}
-        {business.premium && (
+        {/* Hero image banner */}
+        {business.heroImage && (
+          <div className="relative h-36 overflow-hidden">
+            <Image
+              src={business.heroImage}
+              alt={business.name}
+              fill
+              className="object-cover group-hover:scale-105 transition-transform duration-500"
+              unoptimized
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/80 via-transparent to-transparent" />
+            {/* Badges over image */}
+            <div className="absolute top-3 left-3 flex gap-2">
+              {business.premium && <span className="badge-premium shadow-sm">★ PREMIUM</span>}
+              {business.featured && <span className="text-xs text-white bg-primary/80 backdrop-blur-sm px-2 py-0.5 rounded-full font-bold">À la une</span>}
+            </div>
+          </div>
+        )}
+
+        {/* Top accent for premium (no image) */}
+        {business.premium && !business.heroImage && (
           <div className="h-0.5 bg-gradient-to-r from-primary to-primary-container" />
         )}
-        <div className="p-6">
-          <div className="flex items-start justify-between gap-4 mb-4">
-            {/* Logo placeholder */}
-            <div className="w-14 h-14 rounded-xl bg-surface-container-low flex items-center justify-center flex-shrink-0 border border-outline-variant/10">
-              <span className="font-headline font-black text-xl text-primary">
-                {business.name.charAt(0)}
-              </span>
-            </div>
-            <div className="flex-1 min-w-0">
-              <div className="flex flex-wrap items-center gap-2 mb-1.5">
-                {business.premium && <span className="badge-premium">★ PREMIUM</span>}
-                {business.verified && <span className="badge-verified">✓ Vérifié</span>}
-                {business.featured && (
-                  <span className="text-xs text-secondary/60 bg-surface-container px-2 py-0.5 rounded-full">À la une</span>
+
+        <div className="p-5">
+          <div className="flex items-start justify-between gap-4 mb-3">
+            <div className="flex items-start gap-3 flex-1 min-w-0">
+              {/* Logo / thumbnail — smaller when image banner present */}
+              <Thumbnail src={business.heroImage ? undefined : undefined} name={business.name} size="md" />
+              <div className="flex-1 min-w-0">
+                {!business.heroImage && (
+                  <div className="flex flex-wrap items-center gap-2 mb-1.5">
+                    {business.premium && <span className="badge-premium">★ PREMIUM</span>}
+                    {business.verified && <span className="badge-verified">✓ Vérifié</span>}
+                    {business.featured && (
+                      <span className="text-xs text-secondary/60 bg-surface-container px-2 py-0.5 rounded-full">À la une</span>
+                    )}
+                  </div>
+                )}
+                <h3 className="font-headline font-bold text-lg text-on-surface group-hover:text-primary transition-colors leading-tight">
+                  {business.name}
+                </h3>
+                <p className="text-sm text-secondary mt-0.5 leading-snug">{business.tagline}</p>
+                {business.heroImage && (
+                  <div className="flex flex-wrap items-center gap-2 mt-1.5">
+                    {business.verified && <span className="badge-verified">✓ Vérifié</span>}
+                  </div>
                 )}
               </div>
-              <h3 className="font-headline font-bold text-lg text-on-surface group-hover:text-primary transition-colors leading-tight">
-                {business.name}
-              </h3>
-              <p className="text-sm text-secondary mt-0.5 leading-snug">{business.tagline}</p>
             </div>
             {/* Rating */}
             <div className="text-right flex-shrink-0">
@@ -87,10 +135,10 @@ export function BusinessCard({ business, variant = 'default' }: BusinessCardProp
             </div>
           </div>
 
-          <p className="text-sm text-secondary leading-relaxed mb-4 line-clamp-2">{business.description}</p>
+          <p className="text-sm text-secondary leading-relaxed mb-3 line-clamp-2">{business.description}</p>
 
           {/* Services */}
-          <div className="flex flex-wrap gap-1.5 mb-4">
+          <div className="flex flex-wrap gap-1.5 mb-3">
             {business.services.slice(0, 3).map((s) => (
               <span key={s} className="text-xs bg-surface-container px-2.5 py-1 rounded-full text-secondary">
                 {s}

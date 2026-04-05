@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import { businesses, getBusinessBySlug } from '@/lib/data/businesses'
 import { Breadcrumb } from '@/components/layout/Breadcrumb'
 import { generateLocalBusinessSchema } from '@/lib/utils/seo'
@@ -56,8 +57,16 @@ export default function BusinessPage({ params }: Props) {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <div className="pt-20 min-h-screen bg-surface">
+        {/* Hero image banner */}
+        {biz.heroImage && (
+          <div className="relative h-56 md:h-72 w-full overflow-hidden">
+            <Image src={biz.heroImage} alt={biz.name} fill className="object-cover" unoptimized priority />
+            <div className="absolute inset-0 bg-gradient-to-t from-surface-container-low via-surface-container-low/40 to-transparent" />
+          </div>
+        )}
+
         {/* Header band */}
-        <div className="bg-surface-container-low border-b border-outline-variant/10">
+        <div className={`border-b border-outline-variant/10 ${biz.heroImage ? 'bg-surface-container-low -mt-16 relative z-10' : 'bg-surface-container-low'}`}>
           <div className="max-w-7xl mx-auto px-4 md:px-8 py-8">
             <Breadcrumb items={breadcrumbs} />
             <div className="flex flex-col md:flex-row items-start gap-6 mt-4">

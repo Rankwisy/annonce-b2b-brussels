@@ -40,11 +40,12 @@
   .section-title {
     @apply font-headline font-extrabold text-on-surface;
   }
-  .input-field {
+  .input-field,
+  .input {
     @apply w-full bg-surface-container-high rounded-lg px-4 py-3
-           border-b-2 border-transparent focus:border-primary
+           border border-outline-variant/30 focus:border-primary
            focus:bg-white focus:ring-0 outline-none transition-all
-           text-on-surface placeholder:text-secondary/50;
+           text-on-surface placeholder:text-on-surface/30 text-sm;
   }
   .badge-verified {
     @apply inline-flex items-center gap-1 text-xs font-bold text-primary
