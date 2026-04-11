@@ -25,6 +25,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: biz.name,
       description: biz.description,
       url: `https://annonce.brussels/entreprise/${biz.slug}`,
+      images: biz.heroImage
+        ? [{ url: `${biz.heroImage}&w=1200&q=85`, width: 1200, height: 630, alt: biz.name }]
+        : [{ url: '/opengraph-image', width: 1200, height: 630 }],
+    },
+    other: {
+      'article:published_time': new Date(biz.createdAt).toISOString(),
     },
   }
 }

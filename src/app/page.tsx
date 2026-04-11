@@ -4,6 +4,7 @@ import { categories } from '@/lib/data/categories'
 import { getFeaturedBusinesses } from '@/lib/data/businesses'
 import { communes } from '@/lib/data/communes'
 import { BusinessCard } from '@/components/business/BusinessCard'
+import { generateWebSiteSchema } from '@/lib/utils/seo'
 
 export const metadata: Metadata = {
   title: "Annonce.brussels — L'Annuaire B2B de Référence à Bruxelles",
@@ -14,9 +15,11 @@ export const metadata: Metadata = {
 export default function HomePage() {
   const featured = getFeaturedBusinesses()
   const topCategories = categories.slice(0, 8)
+  const webSiteSchema = generateWebSiteSchema()
 
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteSchema) }} />
       {/* ── HERO ─────────────────────────────────────────────────────── */}
       <section className="relative min-h-[92vh] flex items-center overflow-hidden bg-inverse-surface">
         {/* Background overlay */}

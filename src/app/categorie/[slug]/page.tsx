@@ -4,6 +4,7 @@ import { categories, getCategoryBySlug } from '@/lib/data/categories'
 import { getBusinessesByCategory } from '@/lib/data/businesses'
 import { BusinessCard } from '@/components/business/BusinessCard'
 import { Breadcrumb } from '@/components/layout/Breadcrumb'
+import { generateFAQSchema } from '@/lib/utils/seo'
 
 interface Props {
   params: { slug: string }
@@ -24,6 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: cat.metaTitle,
       description: cat.metaDescription,
       url: `https://annonce.brussels/categorie/${cat.slug}`,
+      images: [{ url: '/opengraph-image', width: 1200, height: 630 }],
     },
   }
 }
@@ -39,7 +41,24 @@ export default function CategoryPage({ params }: Props) {
     { name: cat.name, href: `/categorie/${cat.slug}` },
   ]
 
+  const faqSchema = generateFAQSchema([
+    {
+      question: `Comment trouver une entreprise de ${cat.name.toLowerCase()} à Bruxelles ?`,
+      answer: `Sur Annonce.brussels, naviguez dans la catégorie ${cat.name} pour découvrir ${cat.count} entreprises vérifiées avec leurs coordonnées, avis clients et services détaillés. Vous pouvez aussi utiliser la recherche avancée pour filtrer par commune.`,
+    },
+    {
+      question: `Combien y a-t-il d'entreprises de ${cat.name.toLowerCase()} à Bruxelles ?`,
+      answer: `Notre annuaire recense ${cat.count} entreprises de ${cat.name.toLowerCase()} actives dans la Région de Bruxelles-Capitale, toutes vérifiées avec numéro de TVA belge et coordonnées complètes.`,
+    },
+    {
+      question: `Comment contacter une entreprise de ${cat.name.toLowerCase()} à Bruxelles ?`,
+      answer: `Chaque fiche d'entreprise sur Annonce.brussels contient les coordonnées complètes : téléphone, email, adresse et site web. Cliquez sur une entreprise pour accéder à sa fiche et la contacter directement.`,
+    },
+  ])
+
   return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
     <div className="pt-20 min-h-screen bg-surface">
       {/* Hero band */}
       <div className="bg-surface-container-low border-b border-outline-variant/10">
@@ -116,5 +135,6 @@ export default function CategoryPage({ params }: Props) {
         </div>
       </div>
     </div>
+    </>
   )
 }

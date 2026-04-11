@@ -40,9 +40,9 @@ module.exports = {
         'error-container': '#ffdad6',
       },
       fontFamily: {
-        headline: ['"Plus Jakarta Sans"', 'sans-serif'],
-        body: ['Inter', 'sans-serif'],
-        label: ['Inter', 'sans-serif'],
+        headline: ['var(--font-plus-jakarta)', 'sans-serif'],
+        body: ['var(--font-inter)', 'sans-serif'],
+        label: ['var(--font-inter)', 'sans-serif'],
       },
       borderRadius: {
         DEFAULT: '0.125rem',

@@ -22,6 +22,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: commune.metaTitle,
     description: commune.metaDescription,
     alternates: { canonical: `https://annonce.brussels/ville/${commune.slug}` },
+    openGraph: {
+      title: commune.metaTitle,
+      description: commune.metaDescription,
+      url: `https://annonce.brussels/ville/${commune.slug}`,
+      images: [{ url: '/opengraph-image', width: 1200, height: 630 }],
+    },
   }
 }
 

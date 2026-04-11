@@ -9,6 +9,13 @@ import { SearchParams } from '@/types'
 export const metadata: Metadata = {
   title: 'Rechercher une entreprise à Bruxelles',
   description: 'Recherchez parmi 2 400+ entreprises B2B à Bruxelles. Filtrez par secteur, commune, note et disponibilité.',
+  alternates: { canonical: 'https://annonce.brussels/rechercher' },
+  openGraph: {
+    title: 'Rechercher une entreprise à Bruxelles',
+    description: 'Recherchez parmi 2 400+ entreprises B2B à Bruxelles. Filtrez par secteur, commune, note et disponibilité.',
+    url: 'https://annonce.brussels/rechercher',
+    images: [{ url: '/opengraph-image', width: 1200, height: 630 }],
+  },
 }
 
 export default function RechercherPage({
