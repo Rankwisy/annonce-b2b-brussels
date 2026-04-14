@@ -65,6 +65,14 @@ export const communes: Commune[] = [
     metaTitle: 'Entreprises à Uccle 1180 | Annonce.brussels',
     metaDescription: 'Annuaire des entreprises à Uccle (1180). Professions libérales et services premium à Bruxelles.',
   },
+  {
+    slug: 'auderghem',
+    name: 'Auderghem',
+    postalCode: '1160',
+    description: 'Commune verdoyante du sud-est de Bruxelles, mêlant cadre résidentiel de qualité et entreprises de services.',
+    metaTitle: 'Entreprises à Auderghem 1160 | Annonce.brussels',
+    metaDescription: 'Annuaire B2B des entreprises à Auderghem (1160). Services professionnels dans une commune calme de Bruxelles.',
+  },
 ]
 
 export function getCommuneBySlug(slug: string): Commune | undefined {
