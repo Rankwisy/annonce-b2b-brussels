@@ -65,7 +65,6 @@ export const metadata: Metadata = {
       { rel: 'icon', url: 'https://ik.imagekit.io/9nqnnkvba/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' },
     ],
   },
-  manifest: 'https://ik.imagekit.io/9nqnnkvba/site.webmanifest',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
