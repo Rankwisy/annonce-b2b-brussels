@@ -53,6 +53,13 @@ export const metadata: Metadata = {
   },
   alternates: { canonical: 'https://annonce.brussels' },
   verification: { google: '91aHRH6ZDU2tR_Z_vAvIO4WhwgxVxS873HrsaHdU1ig' },
+  icons: {
+    icon: [
+      { url: 'https://ik.imagekit.io/9nqnnkvba/favicon-16x16.png?updatedAt=1775401867749', sizes: '16x16', type: 'image/png' },
+      { url: 'https://ik.imagekit.io/9nqnnkvba/favicon-32x32.png?updatedAt=1775401867748', sizes: '32x32', type: 'image/png' },
+    ],
+    apple: { url: 'https://ik.imagekit.io/9nqnnkvba/apple-touch-icon.png?updatedAt=1775401867737', sizes: '180x180', type: 'image/png' },
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -64,6 +71,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
         />
+        <link rel="icon" type="image/png" sizes="16x16" href="https://ik.imagekit.io/9nqnnkvba/favicon-16x16.png?updatedAt=1775401867749" />
+        <link rel="icon" type="image/png" sizes="32x32" href="https://ik.imagekit.io/9nqnnkvba/favicon-32x32.png?updatedAt=1775401867748" />
+        <link rel="apple-touch-icon" sizes="180x180" href="https://ik.imagekit.io/9nqnnkvba/apple-touch-icon.png?updatedAt=1775401867737" />
       </head>
       <body>
         <Header />
